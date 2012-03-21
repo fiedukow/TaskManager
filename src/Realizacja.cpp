@@ -7,6 +7,7 @@
 #include "Observer.hpp"
 #include <algorithm>
 #include "Zadanie.hpp"
+#include "ZarzadcaZadan.hpp"
 
 using namespace evol;
 

@@ -9,9 +9,11 @@ class ZarzadcaZadan
     time_type **czasy;
     int iloscMaszyn, iloscZadan;
     
-    public:
+    private:
     ZarzadcaZadan( std::string fileName ) throw ( evol::CannotOpenFileException );
+    public:
     ~ZarzadcaZadan();
+    static ZarzadcaZadan& getInstance();
     int getIloscMaszyn();
     int getIloscZadan();
     time_type czasObrobki( int idMaszyny, int idZadania );

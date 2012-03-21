@@ -5,6 +5,12 @@
 
 typedef int time_type;
 
+static ZarzadcaZadan::ZarzadcaZadan& getInstance()
+{
+    static ZarzadcaZadan instance;
+    return instance;
+}
+
 /**
  * Class that provides informations about time that each Machine spends doing each Task.
  * This class can read informations from file if it is needed
