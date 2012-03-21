@@ -40,6 +40,16 @@ class Zadanie : public Chromosome
             return ZadaniePtr( new Zadanie ( this ) );
         }
     }  
+
+    int getSelfId()
+    {
+        return idSelf;
+    }
+
+    int getMaszyna()
+    {
+        return maszyna;
+    }
     
     /*we cant mutate chromosome without knowing anything about whole Subject*/
     virtual void mutate( )  

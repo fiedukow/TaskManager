@@ -51,4 +51,25 @@ class Realizacja : public Subject
             addChromosome( ChromosomePtr(new Zadanie(EvolFunctions::random(0,iloscZadan-1),i)) );
         }
     }
+    virtual SubjectPtr clone() const
+    {
+        SubjectPtr nowaRealizacja = SubjectPtr(new Realizacja());
+        std::vector< ChromosomePtr >::const_iterator iter = chromosomes.begin();
+        std::vector< ChromosomePtr >::const_iterator endIterator = chromosomes.end();
+        for(;iter != endIterator;++iter)
+        {
+            Zadanie *biezaceZadanie = EvolFunctions::ptr_cast<ChromosomePtr,Zadanie>(*iter);
+            ChromosomePtr zadanie = ChromosomePtr( new Zadanie( biezaceZadanie ) );
+            nowaRealizacja->addChromosome(zadanie);
+        }
+        return nowaRealizacja;
+    }
+    /*
+     * Does nothing for now.
+     * FIXME if we need it - implement this.
+     */
+    virtual void print() const
+    {
+        return;
+    }
 };
