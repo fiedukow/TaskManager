@@ -5,9 +5,9 @@
 
 typedef int time_type;
 
-static ZarzadcaZadan::ZarzadcaZadan& getInstance()
+ZarzadcaZadan& ZarzadcaZadan::getInstance()
 {
-    static ZarzadcaZadan instance;
+    static ZarzadcaZadan instance("zadania.dat");
     return instance;
 }
 

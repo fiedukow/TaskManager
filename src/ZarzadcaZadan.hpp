@@ -10,6 +10,7 @@ class ZarzadcaZadan
     int iloscMaszyn, iloscZadan;
     
     private:
+    ZarzadcaZadan();
     ZarzadcaZadan( std::string fileName ) throw ( evol::CannotOpenFileException );
     ZarzadcaZadan(ZarzadcaZadan const&);
     void operator=(ZarzadcaZadan const&);

@@ -1,3 +1,17 @@
+#ifndef _REALIZACJA_HPP_
+#define _REALIZACJA_HPP_
+
+#include "Population.hpp"
+#include "Chromosome.hpp"
+#include "EvolFunctions.hpp"
+#include "EvolException.hpp"
+#include <cmath>
+#include <iostream>
+#include "Observer.hpp"
+#include <algorithm>
+#include "Zadanie.hpp"
+#include "ZarzadcaZadan.hpp"
+
 using namespace evol;
 
 class Realizacja : public Subject
@@ -62,3 +76,4 @@ class Realizacja : public Subject
         return;
     }
 };
+#endif

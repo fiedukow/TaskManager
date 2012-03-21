@@ -1,72 +1,82 @@
+# 3aff56b65b78de1dc7ab6c9d3095f237
 CC=gcc
 CXX=g++
 CFLAGS=$(O) 
 CXXFLAGS=$(CFLAGS) --std=c++0x
 O=-O2
-LFLAGS=-lm
-OBJS=objs/Population.o objs/EvolFunctions.o objs/EvolException.o objs/Subject.o
-
-all: Plecak BMI PlecakDuo
-
-BMI: $(OBJS) objs/BMITest.o 
-	@ echo "    LINK ./BMI"
-	@ $(CXX) $(LFLAGS) $(OBJS) objs/BMITest.o -o "./BMI"
-
-Plecak: $(OBJS) objs/Plecak.o
-	@ echo "    LINK ./Plecak"
-	@ $(CXX) $(LFLAGS) $(OBJS) objs/Plecak.o -o "./Plecak"
-
-PlecakDuo: $(OBJS) objs/PlecakDuo.o
-	@ echo "    LINK ./PlecakDuo"
-	@ $(CXX) $(LFLAGS) $(OBJS) objs/PlecakDuo.o -o "./PlecakDuo"
-
-test: Test
-	@ ./Test    
+LFLAGS=
+OBJS=objs/ZarzadcaZadan.o objs/Population.o objs/EvolFunctions.o objs/EvolException.o objs/Subject.o objs/TaskManager.o objs/Zadanie.o objs/Realizacja.o
 
 
-Test: $(OBJS) objs/Test.o
-	@ echo "    LINK ./Test"
-	@ $(CXX) $(LFLAGS) $(OBJS) objs/Test.o -o "./Test"
+.PHONY: all
+all: objs TaskManager
 
+./TaskManager: $(OBJS)
+	@ echo "    LINK ./TaskManager"
+	@ $(CXX) $(OBJS) -o "./TaskManager" $(LFLAGS)
 
-objs/Population.o: src/Population.cpp src/Population.hpp src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h src/Observer.hpp src/EvolFunctions.hpp
-	@ echo "    CXX  ./src/Population.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/Population.cpp" -o $@
-
-objs/EvolFunctions.o: src/EvolFunctions.cpp src/EvolFunctions.hpp
-	@ echo "    CXX  ./src/EvolFunctions.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/EvolFunctions.cpp" -o $@
-
+objs/ZarzadcaZadan.o: src/ZarzadcaZadan.cpp src/ZarzadcaZadan.hpp \
+ src/EvolException.hpp
+	@ echo "    CXX  src/ZarzadcaZadan.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/ZarzadcaZadan.cpp" -o $@
+objs/Population.o: src/Population.cpp src/Population.hpp src/Subject.hpp \
+ src/EvolException.hpp src/Chromosome.hpp src/debug.h src/Observer.hpp \
+ src/EvolFunctions.hpp
+	@ echo "    CXX  src/Population.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/Population.cpp" -o $@
+objs/EvolFunctions.o: src/EvolFunctions.cpp src/EvolFunctions.hpp \
+ src/Chromosome.hpp src/EvolException.hpp
+	@ echo "    CXX  src/EvolFunctions.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/EvolFunctions.cpp" -o $@
 objs/EvolException.o: src/EvolException.cpp src/EvolException.hpp
-	@ echo "    CXX  ./src/EvolException.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/EvolException.cpp" -o $@
+	@ echo "    CXX  src/EvolException.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/EvolException.cpp" -o $@
+objs/Subject.o: src/Subject.cpp src/Subject.hpp src/EvolException.hpp \
+ src/Chromosome.hpp src/debug.h
+	@ echo "    CXX  src/Subject.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/Subject.cpp" -o $@
+objs/TaskManager.o: src/TaskManager.cpp src/Realizacja.hpp src/Population.hpp \
+ src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h \
+ src/Observer.hpp src/EvolFunctions.hpp src/Zadanie.hpp \
+ src/ZarzadcaZadan.hpp
+	@ echo "    CXX  src/TaskManager.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/TaskManager.cpp" -o $@
+objs/Zadanie.o: src/Zadanie.cpp src/Population.hpp src/Subject.hpp \
+ src/EvolException.hpp src/Chromosome.hpp src/debug.h src/Observer.hpp \
+ src/EvolFunctions.hpp
+	@ echo "    CXX  src/Zadanie.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/Zadanie.cpp" -o $@
+objs/Realizacja.o: src/Realizacja.cpp src/Population.hpp src/Subject.hpp \
+ src/EvolException.hpp src/Chromosome.hpp src/debug.h src/Observer.hpp \
+ src/EvolFunctions.hpp src/Zadanie.hpp src/ZarzadcaZadan.hpp
+	@ echo "    CXX  src/Realizacja.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/Realizacja.cpp" -o $@
 
-objs/Subject.o: src/Subject.cpp src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h
-	@ echo "    CXX  ./src/Subject.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/Subject.cpp" -o $@
-
-objs/BMITest.o: src/BMITest.cpp src/debug.h src/Population.hpp src/Subject.hpp \
- src/EvolException.hpp src/Chromosome.hpp src/Observer.hpp src/EvolFunctions.hpp
-	@ echo "    CXX  ./src/BMITest.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/BMITest.cpp" -o $@
-
-objs/Plecak.o: src/Plecak.cpp src/debug.h src/Population.hpp src/Subject.hpp \
- src/EvolException.hpp src/Chromosome.hpp src/Observer.hpp src/EvolFunctions.hpp
-	@ echo "    CXX  ./src/Plecak.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/Plecak.cpp" -o $@
-
-objs/PlecakDuo.o: src/PlecakDuo.cpp src/debug.h src/Population.hpp src/Subject.hpp \
- src/EvolException.hpp src/Chromosome.hpp src/Observer.hpp src/EvolFunctions.hpp
-	@ echo "    CXX  ./src/PlecakDuo.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./src/PlecakDuo.cpp" -o $@
-
-objs/Test.o: tests/Test.cpp src/debug.h src/Population.hpp src/Subject.hpp \
- src/EvolException.hpp src/Chromosome.hpp src/Observer.hpp src/EvolFunctions.hpp
-	@ echo "    CXX -DDEBUG ./tests/Test.cpp"
-	@ $(CXX) $(CXXFLAGS) -c "./tests/Test.cpp" -DDEBUG -o $@
-
-
-
+objs:
+	@ mkdir "objs"
+.PHONY: c clean
+c: clean
 clean:
-	@ rm objs/*.o
+	@ if [ -d "objs" ]; then rm -r "objs"; fi
+	@ rm -f "./a.out"
+	@ echo "    CLEAN"
+.PHONY: f fresh
+f: fresh
+fresh: clean
+	@ make all --no-print-directory
+.PHONY: r run
+r: run
+run: all
+	@ ././a.out
 
+.PHONY: d debug
+d: debug
+debug: CFLAGS += -DDEBUG -g -Wall -Wextra -Weffc++
+debug: O=-O0
+debug: CC=gcc
+debug: CXX=g++
+debug: all
+
+.PHONY: check-syntax
+check-syntax:
+	g++ $(CXXFLAGS) -fsyntax-only -Wall -o /dev/null -S $(CHK_SOURCES)
