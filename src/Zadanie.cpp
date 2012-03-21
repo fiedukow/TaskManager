@@ -33,7 +33,7 @@ class Zadanie : public Chromosome
         if( EvolFunctions::random() > 0.5 ) 
         {
             Zadanie* toCopy = EvolFunctions::ptr_cast<ChromosomePtr, Zadanie>(toCross);  
-            return ZadaniePtr( new Zadanie( toCops ) );
+            return ZadaniePtr( new Zadanie( toCopy ) );
         }
         else
         {

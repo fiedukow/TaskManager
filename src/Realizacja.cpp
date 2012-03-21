@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Observer.hpp"
 #include <algorithm>
+#include "Zadanie.hpp"
 
 using namespace evol;
 
@@ -38,5 +39,15 @@ class Realizacja : public Subject
                 std::swap(*iter,chromosomes.at(chromosomeToSwap));
             }
         }       
+    }
+    virtual void setInitialValue()
+    {
+        ZarzadcaZadan zarzadcaZadan = ZarzadcaZadan::getInstance();
+        unsigned int iloscMaszyn = zarzadcaZadan.getIloscMaszyn();
+        unsigned int iloscZadan = zarzadcaZadan.getIloscZadan();
+        for(unsigned int i = 0;i<iloscMaszyn;++i)
+        {
+            addChromosome( ChromosomePtr(new Zadanie(EvolFunctions::random(0,iloscZadan-1),i)) );
+        }
     }
 };
