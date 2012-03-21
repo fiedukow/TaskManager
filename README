@@ -1,0 +1,13 @@
+Project for PSZT (basics of AI) subject on Warsaw University of Technology.
+It provides functionality given by the task:
+
+"System obsługi składa się z m maszyn i n zadań wykonujących się na tych maszynach. Dla
+każdego zadania zdefiniowany jest czas tij wykonania zadania i-tego na j-tej maszynie. Celem
+optymalizacji jest znalezienie za pomocą algorytmu ewolucyjnego takiej kolejności
+wykonywania zadań , aby całkowity czas zakończenia się wszystkich zadań był
+najmniejszy."
+
+Authors:
+Andrzej 'Yester' Fiedukowicz (fiedukow@gmail.com)
+Maciej 'mac' Grzybek (mashester@gmail.com)
+Edward 'edi` Miedziński (edward@miedzinski.com.pl)
