@@ -43,7 +43,7 @@ class Realizacja : public Subject
     }
     virtual void setInitialValue()
     {
-        ZarzadcaZadan zarzadcaZadan = ZarzadcaZadan::getInstance();
+        ZarzadcaZadan &zarzadcaZadan = ZarzadcaZadan::getInstance();
         unsigned int iloscMaszyn = zarzadcaZadan.getIloscMaszyn();
         unsigned int iloscZadan = zarzadcaZadan.getIloscZadan();
         for(unsigned int i = 0;i<iloscMaszyn;++i)

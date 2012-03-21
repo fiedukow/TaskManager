@@ -11,6 +11,8 @@ class ZarzadcaZadan
     
     private:
     ZarzadcaZadan( std::string fileName ) throw ( evol::CannotOpenFileException );
+    ZarzadcaZadan(ZarzadcaZadan const&);
+    void operator=(ZarzadcaZadan const&);
     public:
     ~ZarzadcaZadan();
     static ZarzadcaZadan& getInstance();
