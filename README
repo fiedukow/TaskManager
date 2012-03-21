@@ -7,7 +7,12 @@ optymalizacji jest znalezienie za pomocą algorytmu ewolucyjnego takiej kolejno�
 wykonywania zadań , aby całkowity czas zakończenia się wszystkich zadań był
 najmniejszy."
 
+Which can be translated as:
+"There is an operating system with m machines and n tasks which are performed on these machines.
+For each task there is defined time tij which corresponds performing task no. i on j. machine.
+Objective of optimization is to find out using evolution algorithm the proper sequence of performing tasks, to make the lowest time of execution."
+
 Authors:
 Andrzej 'Yester' Fiedukowicz (fiedukow@gmail.com)
 Maciej 'mac' Grzybek (mashester@gmail.com)
-Edward 'edi` Miedziński (edward@miedzinski.com.pl)
+Edward 'edi' Miedziński (edward@miedzinski.com.pl)
