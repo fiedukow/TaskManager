@@ -87,16 +87,3 @@ class ZarzadcaZadan
     }
 };
 
-int main()
-{
-    try{
-        ZarzadcaZadan zz("zadania.dat");
-        zz.print();
-        std::cout << zz.czasObrobki( 2, 0 ) << std::endl ;
-    }
-    catch( int a )
-    {
-        std::cout << "O KURCZE :( " << a << std::endl;
-    }
-    return 0;
-}
