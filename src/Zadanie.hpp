@@ -17,11 +17,15 @@ class Zadanie;
 typedef std::shared_ptr< Zadanie > ZadaniePtr;
 class Zadanie : public Chromosome
 {
+    int idSelf;
+    int maszyna;
     public:
     Zadanie ( int selfid );
     Zadanie ( int selfid, int maszyna_ );
     Zadanie ( const Zadanie* toCopy );
-
+    
+    int getSelfId();
+    int getMaszyna();
     virtual ChromosomePtr crossWith( ChromosomePtr toCross ) const;
     virtual void mutate( );
 };

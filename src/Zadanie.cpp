@@ -5,53 +5,45 @@
 #include <cmath>
 #include <iostream>
 #include "Observer.hpp"
+#include "Zadanie.hpp"
 
 #define NOT_CONNECTED -1
 
-class Zadanie;
 using namespace evol;
 
-typedef std::shared_ptr< Zadanie > ZadaniePtr;
-
-class Zadanie : public Chromosome
+Zadanie::Zadanie ( int selfid ) : idSelf (selfid), maszyna(NOT_CONNECTED)
+{}
+Zadanie::Zadanie ( int selfid, int maszyna_ ) : idSelf (selfid), maszyna( maszyna_ ) 
+{}
+Zadanie::Zadanie ( const Zadanie* toCopy )
 {
-    int idSelf;
-    int maszyna;
-    public:
-    Zadanie ( int selfid ) : idSelf (selfid), maszyna(NOT_CONNECTED)
-    {}
-    Zadanie ( int selfid, int maszyna_ ) : idSelf (selfid), maszyna( maszyna_ ) 
-    {}
-    Zadanie ( const Zadanie* toCopy )
-    {
         this->idSelf = toCopy->idSelf;
         this->maszyna = toCopy->maszyna;
-    }
+}
 
-    virtual ChromosomePtr crossWith( ChromosomePtr toCross ) const
-    {
+ChromosomePtr Zadanie::crossWith( ChromosomePtr toCross ) const
+{
         if( EvolFunctions::random() > 0.5 ) 
         {
-            Zadanie* toCopy = EvolFunctions::ptr_cast<ChromosomePtr, Zadanie>(toCross);  
-            return ZadaniePtr( new Zadanie( toCopy ) );
+                Zadanie* toCopy = EvolFunctions::ptr_cast<ChromosomePtr, Zadanie>(toCross);  
+                return ZadaniePtr( new Zadanie( toCopy ) );
         }
         else
         {
-            return ZadaniePtr( new Zadanie ( this ) );
+                return ZadaniePtr( new Zadanie ( this ) );
         }
-    }  
+}  
 
-    int getSelfId()
-    {
+int Zadanie::getSelfId()
+{
         return idSelf;
-    }
+}
 
-    int getMaszyna()
-    {
+int Zadanie::getMaszyna()
+{
         return maszyna;
-    }
-    
-    /*we cant mutate chromosome without knowing anything about whole Subject*/
-    virtual void mutate( )  
-    { return; }
-};
+}
+
+/*we cant mutate chromosome without knowing anything about whole Subject*/
+void Zadanie::mutate( )  
+{ return; }

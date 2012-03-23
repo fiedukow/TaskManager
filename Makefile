@@ -1,11 +1,11 @@
-# 3aff56b65b78de1dc7ab6c9d3095f237
-CC=gcc
+# 3edc47e2e679f8673c5066264f902714
+CC=clang
 CXX=g++
 CFLAGS=$(O) 
-CXXFLAGS=$(CFLAGS) --std=c++0x
+CXXFLAGS=$(CFLAGS) --std=c++0x -std=c++0x
 O=-O2
 LFLAGS=
-OBJS=objs/ZarzadcaZadan.o objs/Population.o objs/EvolFunctions.o objs/EvolException.o objs/Subject.o objs/TaskManager.o objs/Zadanie.o objs/Realizacja.o
+OBJS=objs/ZarzadcaZadan.o objs/Population.o objs/EvolFunctions.o objs/EvolException.o objs/Subject.o objs/TaskManager.o objs/Zadanie.o objs/CzasRealizacji.o objs/Realizacja.o
 
 
 .PHONY: all
@@ -38,7 +38,7 @@ objs/Subject.o: src/Subject.cpp src/Subject.hpp src/EvolException.hpp \
 objs/TaskManager.o: src/TaskManager.cpp src/Realizacja.hpp src/Population.hpp \
  src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h \
  src/Observer.hpp src/EvolFunctions.hpp src/Zadanie.hpp \
- src/ZarzadcaZadan.hpp
+ src/ZarzadcaZadan.hpp src/CzasRealizacji.hpp
 	@ echo "    CXX  src/TaskManager.cpp"
 	@ $(CXX) $(CXXFLAGS) -c "src/TaskManager.cpp" -o $@
 objs/Zadanie.o: src/Zadanie.cpp src/Population.hpp src/Subject.hpp \
@@ -46,9 +46,16 @@ objs/Zadanie.o: src/Zadanie.cpp src/Population.hpp src/Subject.hpp \
  src/EvolFunctions.hpp
 	@ echo "    CXX  src/Zadanie.cpp"
 	@ $(CXX) $(CXXFLAGS) -c "src/Zadanie.cpp" -o $@
-objs/Realizacja.o: src/Realizacja.cpp src/Population.hpp src/Subject.hpp \
- src/EvolException.hpp src/Chromosome.hpp src/debug.h src/Observer.hpp \
+objs/CzasRealizacji.o: src/CzasRealizacji.cpp src/Population.hpp \
+ src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h \
+ src/Observer.hpp src/CzasRealizacji.hpp src/Realizacja.hpp \
  src/EvolFunctions.hpp src/Zadanie.hpp src/ZarzadcaZadan.hpp
+	@ echo "    CXX  src/CzasRealizacji.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/CzasRealizacji.cpp" -o $@
+objs/Realizacja.o: src/Realizacja.cpp src/Realizacja.hpp src/Population.hpp \
+ src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h \
+ src/Observer.hpp src/EvolFunctions.hpp src/Zadanie.hpp \
+ src/ZarzadcaZadan.hpp
 	@ echo "    CXX  src/Realizacja.cpp"
 	@ $(CXX) $(CXXFLAGS) -c "src/Realizacja.cpp" -o $@
 
@@ -58,7 +65,7 @@ objs:
 c: clean
 clean:
 	@ if [ -d "objs" ]; then rm -r "objs"; fi
-	@ rm -f "./a.out"
+	@ rm -f "./TaskManager"
 	@ echo "    CLEAN"
 .PHONY: f fresh
 f: fresh
@@ -67,11 +74,11 @@ fresh: clean
 .PHONY: r run
 r: run
 run: all
-	@ ././a.out
+	@ ././TaskManager
 
 .PHONY: d debug
 d: debug
-debug: CFLAGS += -DDEBUG -g -Wall -Wextra -Weffc++
+debug: CFLAGS += -DDEBUG -g -Wall -Wextra --std=c++0x
 debug: O=-O0
 debug: CC=gcc
 debug: CXX=g++
