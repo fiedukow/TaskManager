@@ -1,4 +1,5 @@
 #include "ZarzadcaZadan.hpp"
+#include "Zadanie.hpp"
 #include "EvolException.hpp"
 #include <string>
 #include <fstream>
@@ -74,5 +75,10 @@ time_type ZarzadcaZadan::czasObrobki( int idMaszyny, int idZadania )
         /*TODO: out of bound exception here */ 
     }
     return czasy[idMaszyny][idZadania];
+}
+
+time_type ZarzadcaZadan::czasObrobki( const Zadanie& zadanie)
+{
+    return czasObrobki( zadanie.getMaszyna(),zadanie.getSelfId() );
 }
 

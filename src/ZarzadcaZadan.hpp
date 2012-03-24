@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Zadanie.hpp"
 #include "EvolException.hpp"
 
 typedef int time_type;
@@ -20,5 +21,6 @@ class ZarzadcaZadan
     int getIloscMaszyn();
     int getIloscZadan();
     time_type czasObrobki( int idMaszyny, int idZadania );
+    time_type czasObrobki( const Zadanie& zadanie);
 };
 

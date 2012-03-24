@@ -34,12 +34,12 @@ ChromosomePtr Zadanie::crossWith( ChromosomePtr toCross ) const
         }
 }  
 
-int Zadanie::getSelfId()
+int Zadanie::getSelfId() const
 {
         return idSelf;
 }
 
-int Zadanie::getMaszyna()
+int Zadanie::getMaszyna() const
 {
         return maszyna;
 }

@@ -24,8 +24,8 @@ class Zadanie : public Chromosome
     Zadanie ( int selfid, int maszyna_ );
     Zadanie ( const Zadanie* toCopy );
     
-    int getSelfId();
-    int getMaszyna();
+    int getSelfId() const;
+    int getMaszyna() const;
     virtual ChromosomePtr crossWith( ChromosomePtr toCross ) const;
     virtual void mutate( );
 };

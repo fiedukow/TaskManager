@@ -1,5 +1,6 @@
 #include "Realizacja.hpp"
 #include "Zadanie.hpp"
+#include <iostream>
 
 void Realizacja::mutate()
 {
@@ -31,9 +32,9 @@ void Realizacja::setInitialValue()
         ZarzadcaZadan &zarzadcaZadan = ZarzadcaZadan::getInstance();
         unsigned int iloscMaszyn = zarzadcaZadan.getIloscMaszyn();
         unsigned int iloscZadan = zarzadcaZadan.getIloscZadan();
-        for(unsigned int i = 0;i<iloscMaszyn;++i)
+        for(unsigned int i = 0;i<iloscZadan;++i)
         {
-                addChromosome( ChromosomePtr(new Zadanie(EvolFunctions::random(0,iloscZadan-1),i)) );
+                addChromosome( ChromosomePtr(new Zadanie(i,EvolFunctions::random(0,iloscMaszyn-1))) );
         }
 }
 
@@ -63,10 +64,12 @@ unsigned int Realizacja::getSumarycznyCzas() const
 {
     std::vector< ChromosomePtr >::const_iterator iter = chromosomes.begin();
     std::vector< ChromosomePtr >::const_iterator endIterator = chromosomes.end();
+    ZarzadcaZadan &zarzadcaZadan = ZarzadcaZadan::getInstance();
     unsigned int czas = 0;
     for(;iter!=endIterator;++iter)
     {
         Zadanie *biezaceZadanie = EvolFunctions::ptr_cast<ChromosomePtr,Zadanie>(*iter);
+        czas += zarzadcaZadan.czasObrobki(*biezaceZadanie);
 //        biezaceZadanie->
 //        FIXME get time of task execution and sum it up
     }

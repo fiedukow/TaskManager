@@ -1,5 +1,6 @@
 #include "Population.hpp"
 #include "CzasRealizacji.hpp"
+#include <iostream>
 
 CzasRealizacji::CzasRealizacji()
 {
@@ -11,7 +12,8 @@ CzasRealizacji::CzasRealizacji(const int czas_)
 }
 bool CzasRealizacji::operator > ( const FitnessFunction& toCompare) const
 {
-    return czas > ((CzasRealizacji&)toCompare).czas;
+    std::cout << czas << ">" << ((CzasRealizacji&)toCompare).czas << std::endl;
+    return czas < ((CzasRealizacji&)toCompare).czas;
 }
 bool CzasRealizacji::operator == ( const FitnessFunction& toCompare) const
 {
