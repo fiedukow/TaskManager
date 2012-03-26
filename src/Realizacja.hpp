@@ -14,8 +14,6 @@ using namespace evol;
 
 class Realizacja : public Subject
 {
-    protected:
-    double randomMutationFactor;
     public:
     virtual void mutate();
     virtual void setInitialValue();
