@@ -2,17 +2,13 @@
 #include "CzasRealizacji.hpp"
 #include <iostream>
 
-CzasRealizacji::CzasRealizacji()
-{
-    czas = 1;
-}
-CzasRealizacji::CzasRealizacji(const int czas_)
-{
-    czas = czas_;
-}
+CzasRealizacji::CzasRealizacji() : czas(1)
+{}
+CzasRealizacji::CzasRealizacji(const int czas_) : czas(czas_)
+{}
 bool CzasRealizacji::operator > ( const FitnessFunction& toCompare) const
 {
-    std::cout << czas << ">" << ((CzasRealizacji&)toCompare).czas << std::endl;
+//    std::cout << czas << ">" << ((CzasRealizacji&)toCompare).czas << std::endl;
     return czas < ((CzasRealizacji&)toCompare).czas;
 }
 bool CzasRealizacji::operator == ( const FitnessFunction& toCompare) const
