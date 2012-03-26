@@ -41,13 +41,11 @@ void Realizacja::setInitialValue()
 SubjectPtr Realizacja::clone() const
 {
         SubjectPtr nowaRealizacja = SubjectPtr(new Realizacja());
-        std::vector< ChromosomePtr >::const_iterator iter = chromosomes.begin();
-        std::vector< ChromosomePtr >::const_iterator endIterator = chromosomes.end();
-        for(;iter != endIterator;++iter)
+        for( auto iter : chromosomes )
         {
-                Zadanie *biezaceZadanie = EvolFunctions::ptr_cast<ChromosomePtr,Zadanie>(*iter);
-                ChromosomePtr zadanie = ChromosomePtr( new Zadanie( biezaceZadanie ) );
-                nowaRealizacja->addChromosome(zadanie);
+            Zadanie *biezaceZadanie = EvolFunctions::ptr_cast<ChromosomePtr,Zadanie>( iter );
+            ChromosomePtr zadanie = ChromosomePtr( new Zadanie( biezaceZadanie ) );
+            nowaRealizacja->addChromosome(zadanie);
         }
         return nowaRealizacja;
 }
