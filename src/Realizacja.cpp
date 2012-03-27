@@ -47,10 +47,7 @@ SubjectPtr Realizacja::clone() const
         }
         return nowaRealizacja;
 }
-/*
- * Does nothing for now.
- * TODO if we need it - implement this.
- */
+
 void Realizacja::print() const
 {
     std::cout << "Przydzial zadan do maszyn:" << std::endl ;

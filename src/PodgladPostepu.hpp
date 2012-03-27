@@ -6,6 +6,9 @@
 
 class PodgladPostepu : public evol::NewGenerationObserver
 {
+    private:
+    unsigned int bestTime;
+    public:
     void update( evol::Population& population );
 }; 
 
