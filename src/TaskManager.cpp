@@ -3,7 +3,7 @@
 
 int main()
 {
-    CzasRealizacji goal(30);
+    CzasRealizacji goal(8);
     SubjectPtr realizacja( (Subject*) new Realizacja() );
     realizacja->setInitialValue();
     Population populacja( ( FitnessFunction& ) goal, realizacja, 1000, 0.2, 2.0 );

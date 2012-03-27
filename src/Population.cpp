@@ -27,6 +27,9 @@ SubjectPtr Population::start() throw ( SubjectOutOfBoundException )
     this->bestId = 0;
 
     pickStartGeneration();
+    
+    this->subjects[this->bestId]->print();        
+
     currentBestFF = this->goal.clone();
     try
     {
@@ -43,7 +46,7 @@ SubjectPtr Population::start() throw ( SubjectOutOfBoundException )
         crossoverSubjects();
         mutateSubjects();
         selectSubjects();        
-        
+        this->subjects[this->bestId]->print();        
 
         /*current best*/
         try

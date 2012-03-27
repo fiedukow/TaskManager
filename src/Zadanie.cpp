@@ -26,7 +26,7 @@ ChromosomePtr Zadanie::crossWith( ChromosomePtr toCross ) const
         if( EvolFunctions::random() > 0.5 ) 
         {
                 Zadanie* toCopy = EvolFunctions::ptr_cast<ChromosomePtr, Zadanie>(toCross);  
-                return ZadaniePtr( new Zadanie( toCopy ) );
+                return ZadaniePtr( new Zadanie( idSelf, toCopy->getMaszyna() ) );
         }
         else
         {

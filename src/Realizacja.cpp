@@ -1,6 +1,8 @@
 #include "Realizacja.hpp"
 #include "Zadanie.hpp"
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 void Realizacja::mutate()
 {
@@ -21,13 +23,15 @@ void Realizacja::mutate()
             std::swap(*iter,chromosomes.at(chromosomeToSwap));
         }       
 }
+
 void Realizacja::setInitialValue()
 {
+        clearChromosomes();
         ZarzadcaZadan &zarzadcaZadan = ZarzadcaZadan::getInstance();
         unsigned int iloscMaszyn = zarzadcaZadan.getIloscMaszyn();
         unsigned int iloscZadan = zarzadcaZadan.getIloscZadan();
         for(unsigned int i = 0;i<iloscZadan;++i)
-        {
+        {        
                 addChromosome( ChromosomePtr(new Zadanie(i,EvolFunctions::random(0,iloscMaszyn-1))) );
         }
 }
@@ -49,21 +53,34 @@ SubjectPtr Realizacja::clone() const
  */
 void Realizacja::print() const
 {
-        return;
+    std::cout << "Przydzial zadan do maszyn:" << std::endl ;
+    std::cout << "==================================" << std::endl;
+    std::cout << "==    ZADANIE   ==    MASZYNA   ==" << std::endl;
+    std::cout << "==================================" << std::endl;
+
+    for( auto iter : chromosomes )
+    {
+        Zadanie *przydzial = EvolFunctions::ptr_cast<ChromosomePtr, Zadanie>(iter);
+        std::cout << "==\t" << przydzial->getSelfId() << "\t==\t" << przydzial->getMaszyna();
+        std::cout << "\t==" << std::endl;    
+    }     
+
+    std::cout << "==================================" << std::endl;
+    std::cout << "CZAS WYKONANIA: " << getSumarycznyCzas() << std::endl << std::endl;
+
+    return;
 }
 
 unsigned int Realizacja::getSumarycznyCzas() const
 {
-    std::vector< ChromosomePtr >::const_iterator iter = chromosomes.begin();
-    std::vector< ChromosomePtr >::const_iterator endIterator = chromosomes.end();
     ZarzadcaZadan &zarzadcaZadan = ZarzadcaZadan::getInstance();
-    unsigned int czas = 0;
-    for(;iter!=endIterator;++iter)
+    std::vector<unsigned int> czasy(zarzadcaZadan.getIloscMaszyn(), 0);
+
+    Zadanie* biezaceZadanie;
+    for(auto biezacyChromosom : chromosomes )
     {
-        Zadanie *biezaceZadanie = EvolFunctions::ptr_cast<ChromosomePtr,Zadanie>(*iter);
-        czas += zarzadcaZadan.czasObrobki(*biezaceZadanie);
-//        biezaceZadanie->
-//        FIXME get time of task execution and sum it up
+        biezaceZadanie = EvolFunctions::ptr_cast<ChromosomePtr,Zadanie>(biezacyChromosom);
+        czasy[biezaceZadanie->getMaszyna()] += zarzadcaZadan.czasObrobki(*biezaceZadanie);
     }
-    return czas;
+    return *std::max_element(czasy.begin(), czasy.end());
 }
