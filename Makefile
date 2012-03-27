@@ -5,7 +5,7 @@ CFLAGS=$(O)
 CXXFLAGS=$(CFLAGS) --std=c++0x -std=c++0x
 O=-O2
 LFLAGS=
-OBJS=objs/ZarzadcaZadan.o objs/Population.o objs/EvolFunctions.o objs/EvolException.o objs/Subject.o objs/TaskManager.o objs/Zadanie.o objs/CzasRealizacji.o objs/Realizacja.o
+OBJS=objs/ZarzadcaZadan.o objs/Population.o objs/EvolFunctions.o objs/EvolException.o objs/Subject.o objs/TaskManager.o objs/Zadanie.o objs/CzasRealizacji.o objs/Realizacja.o objs/PodgladPostepu.o
 
 
 .PHONY: all
@@ -36,6 +36,7 @@ objs/Subject.o: src/Subject.cpp src/Subject.hpp src/EvolException.hpp \
 	@ echo "    CXX  src/Subject.cpp"
 	@ $(CXX) $(CXXFLAGS) -c "src/Subject.cpp" -o $@
 objs/TaskManager.o: src/TaskManager.cpp src/Realizacja.hpp src/Population.hpp \
+ src/PodgladPostepu.hpp \
  src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h \
  src/Observer.hpp src/EvolFunctions.hpp src/Zadanie.hpp \
  src/ZarzadcaZadan.hpp src/CzasRealizacji.hpp
@@ -58,6 +59,13 @@ objs/Realizacja.o: src/Realizacja.cpp src/Realizacja.hpp src/Population.hpp \
  src/ZarzadcaZadan.hpp
 	@ echo "    CXX  src/Realizacja.cpp"
 	@ $(CXX) $(CXXFLAGS) -c "src/Realizacja.cpp" -o $@
+objs/PodgladPostepu.o: src/PodgladPostepu.cpp src/PodgladPostepu.hpp \
+ src/TaskManager.cpp src/Realizacja.hpp src/Population.hpp \
+ src/Subject.hpp src/EvolException.hpp src/Chromosome.hpp src/debug.h \
+ src/Observer.hpp src/EvolFunctions.hpp src/Zadanie.hpp \
+ src/ZarzadcaZadan.hpp src/CzasRealizacji.hpp
+	@ echo "    CXX  src/PodgladPostepu.cpp"
+	@ $(CXX) $(CXXFLAGS) -c "src/PodgladPostepu.cpp" -o $@
 
 objs:
 	@ mkdir "objs"

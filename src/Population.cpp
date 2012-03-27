@@ -28,8 +28,6 @@ SubjectPtr Population::start() throw ( SubjectOutOfBoundException )
 
     pickStartGeneration();
     
-    this->subjects[this->bestId]->print();        
-
     currentBestFF = this->goal.clone();
     try
     {

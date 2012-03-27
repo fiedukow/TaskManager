@@ -1,4 +1,6 @@
 #include "Realizacja.hpp"
+#include "Observer.hpp"
+#include "PodgladPostepu.hpp"
 #include "CzasRealizacji.hpp"
 
 int main()
@@ -7,6 +9,9 @@ int main()
     SubjectPtr realizacja( (Subject*) new Realizacja() );
     realizacja->setInitialValue();
     Population populacja( ( FitnessFunction& ) goal, realizacja, 1000, 0.2, 2.0 );
+    PodgladPostepu postep;
+    populacja.registerObserver( NObserverPtr( &postep ) );
+
     Realizacja *wynik;
     try
     {
