@@ -8,7 +8,7 @@ int main()
     CzasRealizacji goal(8);
     SubjectPtr realizacja( (Subject*) new Realizacja() );
     realizacja->setInitialValue();
-    Population populacja( ( FitnessFunction& ) goal, realizacja, 5000, 0.3, 3.0 );
+    Population populacja( ( FitnessFunction& ) goal, realizacja, 1000, 0.2, 2.0 );
     PodgladPostepu postep;
     populacja.registerObserver( NObserverPtr( &postep ) );
 

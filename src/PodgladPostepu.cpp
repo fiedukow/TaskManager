@@ -22,4 +22,8 @@ void PodgladPostepu::update( evol::Population& population )
         best->print();
         std::cout << std::endl;
     }
+    else if( populationCounter%100 == 0 )
+    {
+        std::cout << "Pokolenie nr. "<< populationCounter << std::endl << std::endl; 
+    }
 }
