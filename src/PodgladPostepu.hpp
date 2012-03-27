@@ -1,7 +1,7 @@
 #pragma once
 #include "Observer.hpp"
 #include "Population.hpp"
-#include <vector>
+#include <iostream>
 
 
 class PodgladPostepu : public evol::NewGenerationObserver

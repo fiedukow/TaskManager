@@ -44,7 +44,6 @@ SubjectPtr Population::start() throw ( SubjectOutOfBoundException )
         crossoverSubjects();
         mutateSubjects();
         selectSubjects();        
-        this->subjects[this->bestId]->print();        
 
         /*current best*/
         try
