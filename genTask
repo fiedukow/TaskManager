@@ -1,0 +1,13 @@
+#!/usr/bin/php
+<?php
+    $maszyny = $argv[1];
+    $zadania = $argv[2];
+    $liczb = $maszyny*$zadania;
+    echo "$maszyny $zadania";
+    echo "\n";
+    for( $i = 0; $i < $liczb; ++$i)
+    {
+        echo (rand()%100+1)." ";
+    }
+    echo "\n";
+?>
