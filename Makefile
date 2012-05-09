@@ -9,11 +9,11 @@ OBJS=objs/ZarzadcaZadan.o objs/Population.o objs/EvolFunctions.o objs/EvolExcept
 
 
 .PHONY: all
-all: objs TaskManager
+all: objs bin/TaskManager
 
-./TaskManager: $(OBJS)
-	@ echo "    LINK ./TaskManager"
-	@ $(CXX) $(OBJS) -o "./TaskManager" $(LFLAGS)
+bin/TaskManager: $(OBJS)
+	@ echo "    LINK bin/TaskManager"
+	@ $(CXX) $(OBJS) -o "bin/TaskManager" $(LFLAGS)
 
 objs/ZarzadcaZadan.o: src/ZarzadcaZadan.cpp src/ZarzadcaZadan.hpp \
  src/EvolException.hpp
