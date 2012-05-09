@@ -58,7 +58,7 @@ SubjectPtr Realizacja::clone() const
         return nowaRealizacja;
 }
 
-void Realizacja::print() const
+void Realizacja::print() const //TODO overloded << would be better
 {
     std::cout << "Przydzial zadan do maszyn:" << std::endl ;
     std::cout << "==================================" << std::endl;

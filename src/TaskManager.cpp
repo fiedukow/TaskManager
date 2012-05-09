@@ -15,8 +15,7 @@ int main( int argc, char* argv[] )
     SubjectPtr realizacja( (Subject*) new Realizacja(argv[1]) );
     realizacja->setInitialValue();
     Population populacja( ( FitnessFunction& ) goal, realizacja, 1000, 0.2, 2.0 );
-    PodgladPostepu postep;
-    populacja.registerObserver( NObserverPtr( &postep ) );
+    populacja.registerObserver( NObserverPtr( new PodgladPostepu() ) );
 
     Realizacja *wynik;
     try
