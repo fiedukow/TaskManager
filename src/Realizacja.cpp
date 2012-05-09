@@ -4,6 +4,16 @@
 #include <algorithm>
 #include <vector>
 
+Realizacja::Realizacja()
+{}
+
+Realizacja::Realizacja( const char* fileName )
+{
+    ZarzadcaZadan::getInstance(fileName); 
+    //TODO can be better
+}
+
+
 void Realizacja::mutate()
 {
         std::vector< ChromosomePtr >::iterator iter = chromosomes.begin();

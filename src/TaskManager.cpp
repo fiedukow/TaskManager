@@ -3,10 +3,16 @@
 #include "Observer.hpp"
 #include "CzasRealizacji.hpp"
 
-int main()
+int main( int argc, char* argv[] )
 {
+    if( argc < 2 )
+    {
+        std::cout << "Usage: " << argv[0] << " fileWithTasks" << std::endl;
+        return -1;
+    }
+
     CzasRealizacji goal(8);
-    SubjectPtr realizacja( (Subject*) new Realizacja() );
+    SubjectPtr realizacja( (Subject*) new Realizacja(argv[1]) );
     realizacja->setInitialValue();
     Population populacja( ( FitnessFunction& ) goal, realizacja, 1000, 0.2, 2.0 );
     PodgladPostepu postep;

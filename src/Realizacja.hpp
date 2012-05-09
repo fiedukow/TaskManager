@@ -1,13 +1,14 @@
 #ifndef _REALIZACJA_HPP_
 #define _REALIZACJA_HPP_
 
+#include <iostream>
+#include <algorithm>
+
 #include "Population.hpp"
 #include "Chromosome.hpp"
 #include "EvolFunctions.hpp"
 #include "EvolException.hpp"
-#include <iostream>
 #include "Observer.hpp"
-#include <algorithm>
 #include "ZarzadcaZadan.hpp"
 
 using namespace evol;
@@ -15,6 +16,8 @@ using namespace evol;
 class Realizacja : public Subject
 {
     public:
+    Realizacja();
+    Realizacja( const char* fileName );
     virtual void mutate();
     virtual void setInitialValue();
     virtual SubjectPtr clone() const;

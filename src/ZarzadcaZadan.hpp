@@ -17,7 +17,7 @@ class ZarzadcaZadan
     void operator=(ZarzadcaZadan const&);
     public:
     ~ZarzadcaZadan();
-    static ZarzadcaZadan& getInstance();
+    static ZarzadcaZadan& getInstance( const std::string& fileName = "zadania.dat");
     int getIloscMaszyn();
     int getIloscZadan();
     time_type czasObrobki( int idMaszyny, int idZadania );
