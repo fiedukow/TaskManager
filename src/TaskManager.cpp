@@ -1,6 +1,6 @@
+#include "PodgladPostepu.hpp"
 #include "Realizacja.hpp"
 #include "Observer.hpp"
-#include "PodgladPostepu.hpp"
 #include "CzasRealizacji.hpp"
 
 int main()

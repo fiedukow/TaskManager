@@ -1,3 +1,4 @@
+#pragma once
 #include "Population.hpp"
 #include "Realizacja.hpp"
 

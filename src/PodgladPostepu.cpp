@@ -14,7 +14,7 @@ void PodgladPostepu::update( evol::Population& population )
     );
     ++populationCounter;
     unsigned int current = best->getSumarycznyCzas();
-    if( current < bestTime )
+    if( !bestTime || current < bestTime )
     {
         bestTime = current;
         std::cout << "Poprawil sie wynik najlepszego osobnika."<< std::endl;

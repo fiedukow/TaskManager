@@ -1,13 +1,13 @@
 #pragma once
+#include <boost/optional.hpp>
 #include "Observer.hpp"
 #include "Population.hpp"
 #include <iostream>
 
-
 class PodgladPostepu : public evol::NewGenerationObserver
 {
     private:
-    unsigned int bestTime;
+    boost::optional<unsigned int> bestTime;
     unsigned int populationCounter;
     public:
     PodgladPostepu();
